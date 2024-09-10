@@ -10,7 +10,19 @@ IDRISI-R is the largest-scale publicly-available Twitter Location Mention Recogn
 
 Distaster tweets are cleaned and preprocessed by removing empty tweets, hyperlinks and other unnecessary strings that do not contribute to location extraction. Tweets are prefixed with "Extract locations :" to match with t5 model input format.
 
-The fine-tuned model weights are available in the `fine-tuned-t5` folder. To utilize these weights, execute the code below
+The fine-tuned model, specifically trained for location extraction from disaster-related tweets, is available in the fine-tuned-t5 directory. To obtain the fine-tuned model weights, you can clone the repository as shown below:
+
+```
+git clone https://github.com/bindusri0702/Extract_locations.git
+```
+
+Once cloned, navigate to the directory containing the model weights:
+
+```
+cd fine-tuned-t5
+```
+
+To load and utilize the fine-tuned model and tokenizer, execute the following Python code:
 
 ```python
 from transformers import T5ForConditionalGeneration, T5Tokenizer
@@ -18,5 +30,12 @@ from transformers import T5ForConditionalGeneration, T5Tokenizer
 # Load the fine-tuned model and tokenizer
 model = T5ForConditionalGeneration.from_pretrained('./fine-tuned-t5')
 tokenizer = T5Tokenizer.from_pretrained('./fine-tuned-t5')
+
+# Example usage:
+# input_text = "Extract locations: Landslide in Wayanad had taken many lives."
+# inputs = tokenizer(input_text, return_tensors="pt")
+# output = model.generate(inputs.input_ids)
+# decoded_output = tokenizer.decode(output[0], skip_special_tokens=True)
+# print(decoded_output)
 
 ```
