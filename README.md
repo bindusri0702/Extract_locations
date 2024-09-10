@@ -9,3 +9,14 @@ IDRISI-R is the largest-scale publicly-available Twitter Location Mention Recogn
 ### Model
 
 Distaster tweets are cleaned and preprocessed by removing empty tweets, hyperlinks and other unnecessary strings that do not contribute to location extraction. Tweets are prefixed with "Extract locations :" to match with t5 model input format.
+
+The fine-tuned model weights are available in the `fine-tuned-t5` folder. To utilize these weights, execute the code below
+
+```python
+from transformers import T5ForConditionalGeneration, T5Tokenizer
+
+# Load the fine-tuned model and tokenizer
+model = T5ForConditionalGeneration.from_pretrained('./fine-tuned-t5')
+tokenizer = T5Tokenizer.from_pretrained('./fine-tuned-t5')
+
+```
